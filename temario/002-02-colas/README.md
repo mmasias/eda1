@@ -142,3 +142,5 @@ public class EjemploCola {
 - Manejar el caso de cola vacía en las operaciones dequeue y peek
 - Actualizar correctamente las referencias al frente y al final en todas las operaciones
 - Considerar la implementación de una cola circular para optimizar el uso de memoria en ciertas aplicaciones
+
+> [Implementación (una propuesta)](/src/secuencias/colas/)

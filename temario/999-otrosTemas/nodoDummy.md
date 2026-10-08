@@ -50,4 +50,4 @@ El patrón tiene cinco pasos:
 
 </div>
 
-> *[Ver ejemplo completo](/src/listas/nodoDummy/README.md)*: eliminación por valor e inserción en posición, con y sin dummy, ejecutadas sobre los mismos casos límite.
+> *[Ver ejemplo completo](/src/secuencias/listas/nodoDummy/README.md)*: eliminación por valor e inserción en posición, con y sin dummy, ejecutadas sobre los mismos casos límite.

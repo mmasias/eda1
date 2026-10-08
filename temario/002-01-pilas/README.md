@@ -177,3 +177,5 @@ public class EjemploPila {
 - Manejar casos de desbordamiento (overflow) y subdesbordamiento (underflow)
 - Elegir entre implementación con array (tamaño fijo) o lista enlazada (tamaño dinámico)
 - Considerar la implementación de una pila genérica para manejar diferentes tipos de datos
+
+> [Implementación (una propuesta)](/src/secuencias/pilas/)
