@@ -98,7 +98,7 @@ public class EjemploListaEnlazada {
 #### Consideraciones para la implementación:
 
 - Manejo cuidadoso para evitar pérdidas de memoria o errores
-- Uso de nodo "dummy" o centinela para simplificar operaciones
+- Uso de [nodo "dummy"](/temario/999-otrosTemas/nodoDummy.md) o centinela para simplificar operaciones
 - Implementación de iteradores para recorrer la lista de manera eficiente
 
 ### Más...
