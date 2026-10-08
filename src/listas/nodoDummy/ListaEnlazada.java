@@ -16,7 +16,6 @@ class ListaEnlazada {
         System.out.println("null");
     }
 
-    // Si la posición excede el tamaño, se inserta al final.
     public void insertarEnPosicion(int posicion, int dato) {
         Nodo dummy = new Nodo(-1);
         dummy.siguiente = cabeza;
