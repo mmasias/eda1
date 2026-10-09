@@ -38,9 +38,9 @@ Esta jerarquía muestra cómo las estructuras de datos más simples pueden verse
 
 - Acerca de... : qué son, qué no son, qué saben, qué no saben...
   - [las listas](/temario/999-otrosTemas/acercaDeListas.md) / [las pilas](/temario/999-otrosTemas/acercaDePilas.md) / [las colas](/temario/999-otrosTemas/acercaDeColas.md)
+    - [Nodo dummy](/temario/999-otrosTemas/nodoDummy.md)
   - [los árboles](/temario/999-otrosTemas/acercaDeArboles.md)
   - [los grafos](/temario/999-otrosTemas/acercaDeGrafos.md)
-- [Nodo dummy](/temario/999-otrosTemas/nodoDummy.md)
 - [Breve intro a la recursividad](/temario/999-otrosTemas/recursividad.md)
 - [Programación genérica](/temario/999-otrosTemas/programacionGenerica.md)
 - [Pruebas & manejo de errores](/temario/999-otrosTemas/pruebas.md)
