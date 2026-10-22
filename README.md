@@ -7,7 +7,7 @@
   - [x] [Listas](temario/002-00-listas/README.md)
   - [x] [Pilas](temario/002-01-pilas/README.md)
   - [x] [Colas](temario/002-02-colas/README.md)
-- [x] [Árboles](temario/003-arboles/README.md)
+- [ ] [Árboles](temario/003-arboles/README.md)
 - [ ] [Grafos](temario/004-grafos/README.md)
 - [ ] [Ficheros](temario/005-ficheros/README.md)
 
