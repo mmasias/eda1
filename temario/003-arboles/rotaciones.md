@@ -78,6 +78,8 @@ Dado un nodo `P` (Padre) y su hijo derecho `Q`:
     B   C         A   B
 ```
 
+> [Detalle](rotacionIzquierda.md)
+
 ### Rotación a la Derecha
 
 Se aplica cuando un subárbol está desbalanceado hacia la izquierda (el hijo izquierdo es el que hace pesada la rama).
@@ -97,6 +99,8 @@ Dado un nodo `Q` (Padre) y su hijo izquierdo `P`:
    / \               / \
   A   B             B   C
 ```
+
+> [Detalle](rotacionDerecha.md)
 
 ### Implementación conceptual
 
