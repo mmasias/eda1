@@ -56,6 +56,7 @@ Los recorridos se pueden implementar de dos formas:
 Usa una ***pila explícita*** para simular las llamadas recursivas.|La forma más habitual y concisa. La definición del recorrido se traduce directamente en llamadas recursivas.
 Más verbosa pero sin riesgo de stack overflow y más fácil de depurar paso a paso.|Es elegante pero consume stack y puede causar desbordamiento en árboles muy profundos.
 [ejemplo006](/src/arboles/ejemplo006/) - Implementaciones iterativas de los tres recorridos en BST|[Ejemplos recursivos](/src/arboles/zzz-deprecated/recorridos/) (código deprecated, solo referencia educativa. Lo volveremos a ver en EDA2 cuando estudiemos recursividad)
+|[+Detalle](recorridos-iterativo.md)||
 
 </div>
 
