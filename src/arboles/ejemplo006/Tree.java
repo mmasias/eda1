@@ -36,90 +36,199 @@ class Tree {
         }
     }
 
-    public void printPreorder() {
+    public void printTree() {
+        if (root == null) {
+            System.out.println("Árbol vacío");
+        } else {
+            Node[] nodeStack = new Node[100];
+            String[] prefixStack = new String[100];
+            String[] labelStack = new String[100];
+            boolean[] lastStack = new boolean[100];
+            int top = -1;
+
+            top = top + 1;
+            nodeStack[top] = root;
+            prefixStack[top] = "";
+            labelStack[top] = "";
+            lastStack[top] = true;
+
+            while (top >= 0) {
+                Node current = nodeStack[top];
+                String prefix = prefixStack[top];
+                String label = labelStack[top];
+                boolean last = lastStack[top];
+                top = top - 1;
+
+                String childPrefix;
+                if (current == root) {
+                    System.out.println(current.getKey());
+                    childPrefix = "";
+                } else {
+                    String connector = last ? "\\-- " : "+-- ";
+                    System.out.println(prefix + connector + label + current.getKey());
+                    childPrefix = prefix + (last ? "    " : "|   ");
+                }
+
+                if (current.hasRightChild()) {
+                    top = top + 1;
+                    nodeStack[top] = current.getRight();
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "D: ";
+                    lastStack[top] = true;
+                }
+
+                if (current.hasLeftChild()) {
+                    top = top + 1;
+                    nodeStack[top] = current.getLeft();
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "I: ";
+                    lastStack[top] = !current.hasRightChild();
+                }
+            }
+        }
+    }
+
+    public void printTraversePreorder() {
         if (root == null) {
             System.out.println("Árbol vacío");
             return;
         }
 
-        Node[] stack = new Node[100];
+        Node[] stackNode = new Node[100];
+        boolean[] stackPrint = new boolean[100];
         int top = -1;
 
         top = top + 1;
-        stack[top] = root;
+        stackNode[top] = root;
+        stackPrint[top] = false;
 
         while (top >= 0) {
-            Node current = stack[top];
+            printStack(stackNode, stackPrint, top);
+
+            Node current = stackNode[top];
+            boolean toPrint = stackPrint[top];
             top = top - 1;
 
-            System.out.print(current.getKey() + " ");
-
-            if (current.hasRightChild()) {
-                top = top + 1;
-                stack[top] = current.getRight();
-            }
-
-            if (current.hasLeftChild()) {
-                top = top + 1;
-                stack[top] = current.getLeft();
-            }
-        }
-        System.out.println();
-    }
-
-    public void printInorder() {
-        if (root == null) {
-            System.out.println("Árbol vacío");
-            return;
-        }
-
-        Node[] stack = new Node[100];
-        int top = -1;
-        Node current = root;
-
-        while (current != null || top >= 0) {
-            while (current != null) {
-                top = top + 1;
-                stack[top] = current;
-                current = current.getLeft();
-            }
-
-            current = stack[top];
-            top = top - 1;
-            System.out.print(current.getKey() + " ");
-            current = current.getRight();
-        }
-        System.out.println();
-    }
-
-    public void printPostorder() {
-        if (root == null) {
-            System.out.println("Árbol vacío");
-            return;
-        }
-
-        Node[] stack = new Node[100];
-        int top = -1;
-        Node current = root;
-        Node lastVisited = null;
-
-        while (top >= 0 || current != null) {
-            if (current != null) {
-                top = top + 1;
-                stack[top] = current;
-                current = current.getLeft();
+            if (toPrint) {
+                System.out.print(current.getKey() + " ");
             } else {
-                Node peekNode = stack[top];
-                if (peekNode.hasRightChild() && lastVisited != peekNode.getRight()) {
-                    current = peekNode.getRight();
-                } else {
-                    System.out.print(peekNode.getKey() + " ");
-                    lastVisited = stack[top];
-                    top = top - 1;
+                if (current.hasRightChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getRight();
+                    stackPrint[top] = false;
+                }
+
+                if (current.hasLeftChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getLeft();
+                    stackPrint[top] = false;
+                }
+
+                top = top + 1;
+                stackNode[top] = current;
+                stackPrint[top] = true;
+            }
+        }
+        System.out.println();
+    }
+
+    public void printTraverseInorder() {
+        if (root == null) {
+            System.out.println("Árbol vacío");
+            return;
+        }
+
+        Node[] stackNode = new Node[100];
+        boolean[] stackPrint = new boolean[100];
+        int top = -1;
+
+        top = top + 1;
+        stackNode[top] = root;
+        stackPrint[top] = false;
+
+        while (top >= 0) {
+            printStack(stackNode, stackPrint, top);
+
+            Node current = stackNode[top];
+            boolean toPrint = stackPrint[top];
+            top = top - 1;
+
+            if (toPrint) {
+                System.out.print(current.getKey() + " ");
+            } else {
+                if (current.hasRightChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getRight();
+                    stackPrint[top] = false;
+                }
+
+                top = top + 1;
+                stackNode[top] = current;
+                stackPrint[top] = true;
+
+                if (current.hasLeftChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getLeft();
+                    stackPrint[top] = false;
                 }
             }
         }
         System.out.println();
+    }
+
+    public void printTraversePostorder() {
+        if (root == null) {
+            System.out.println("Árbol vacío");
+            return;
+        }
+
+        Node[] stackNode = new Node[100];
+        boolean[] stackPrint = new boolean[100];
+        int top = -1;
+
+        top = top + 1;
+        stackNode[top] = root;
+        stackPrint[top] = false;
+
+        while (top >= 0) {
+            printStack(stackNode, stackPrint, top);
+
+            Node current = stackNode[top];
+            boolean toPrint = stackPrint[top];
+            top = top - 1;
+
+            if (toPrint) {
+                System.out.print(current.getKey() + " ");
+            } else {
+                top = top + 1;
+                stackNode[top] = current;
+                stackPrint[top] = true;
+
+                if (current.hasRightChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getRight();
+                    stackPrint[top] = false;
+                }
+
+                if (current.hasLeftChild()) {
+                    top = top + 1;
+                    stackNode[top] = current.getLeft();
+                    stackPrint[top] = false;
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    private void printStack(Node[] stackNode, boolean[] stackPrint, int top) {
+        System.out.print("[");
+        for (int i = 0; i <= top; i++) {
+            System.out.print((stackPrint[i] ? "P:" : "V:") + stackNode[i].getKey());
+            if (i < top) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println("]");
     }
 
 }

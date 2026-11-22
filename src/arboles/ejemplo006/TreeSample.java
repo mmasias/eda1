@@ -8,14 +8,16 @@ public class TreeSample {
 
         fillTree(tree);
 
+        tree.printTree();
+
         System.out.println("Recorrido Preorden:");
-        tree.printPreorder();
+        tree.printTraversePreorder();
 
         System.out.println("Recorrido Inorden:");
-        tree.printInorder();
+        tree.printTraverseInorder();
 
         System.out.println("Recorrido Postorden:");
-        tree.printPostorder();
+        tree.printTraversePostorder();
     }
 
     private static void fillTree(Tree tree) {

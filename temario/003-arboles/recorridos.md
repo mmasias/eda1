@@ -103,7 +103,7 @@ V / hI / hD|hI / V / hD|hI / hD / V
 **Preorden**|**Inorden**|**Postorden**
 V / hI / hD|hI / V / hD|hI / hD / V
 1 2 4 5 3|4 2 5 1 3|4 5 2 3 1
-[printPreorder()](/src/arboles/ejemplo006/Tree.java#L41-L62)|[printInorder()](/src/arboles/ejemplo006/Tree.java#L64-L86)|[printPostorder()](/src/arboles/ejemplo006/Tree.java#L88-L122)
+[printTraversePreorder()](/src/arboles/ejemplo006/Tree.java#L91-L133)|[printTraverseInorder()](/src/arboles/ejemplo006/Tree.java#L135-L177)|[printTraversePostorder()](/src/arboles/ejemplo006/Tree.java#L179-L221)
 
 </div>
 
