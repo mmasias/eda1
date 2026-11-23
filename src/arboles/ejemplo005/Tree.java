@@ -41,33 +41,48 @@ class Tree {
             System.out.println("Árbol vacío");
         } else {
             Node[] nodeStack = new Node[100];
-            int[] levelStack = new int[100];
+            String[] prefixStack = new String[100];
+            String[] labelStack = new String[100];
+            boolean[] lastStack = new boolean[100];
             int top = -1;
 
             top = top + 1;
             nodeStack[top] = root;
-            levelStack[top] = 0;
+            prefixStack[top] = "";
+            labelStack[top] = "";
+            lastStack[top] = true;
 
             while (top >= 0) {
                 Node current = nodeStack[top];
-                int level = levelStack[top];
+                String prefix = prefixStack[top];
+                String label = labelStack[top];
+                boolean last = lastStack[top];
                 top = top - 1;
 
-                for (int i = 0; i < level; i = i + 1) {
-                    System.out.print("  ");
+                String childPrefix;
+                if (current == root) {
+                    System.out.println(current.getKey());
+                    childPrefix = "";
+                } else {
+                    String connector = last ? "`-- " : "+-- ";
+                    System.out.println(prefix + connector + label + current.getKey());
+                    childPrefix = prefix + (last ? "    " : "|   ");
                 }
-                System.out.println(current.getKey());
 
                 if (current.hasRightChild()) {
                     top = top + 1;
                     nodeStack[top] = current.getRight();
-                    levelStack[top] = level + 1;
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "D: ";
+                    lastStack[top] = true;
                 }
 
                 if (current.hasLeftChild()) {
                     top = top + 1;
                     nodeStack[top] = current.getLeft();
-                    levelStack[top] = level + 1;
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "I: ";
+                    lastStack[top] = !current.hasRightChild();
                 }
             }
         }

@@ -37,66 +37,55 @@ class Tree {
     }
 
     public void printTree() {
-        if (root != null) {
-            System.out.println(root.getKey());
-
-            Node[] stack = new Node[100];
+        if (root == null) {
+            System.out.println("Árbol vacío");
+        } else {
+            Node[] nodeStack = new Node[100];
             String[] prefixStack = new String[100];
-            boolean[] isLastStack = new boolean[100];
-            boolean[] isLeftStack = new boolean[100];
+            String[] labelStack = new String[100];
+            boolean[] lastStack = new boolean[100];
             int top = -1;
 
-            if (root.hasLeftChild()) {
-                top = top + 1;
-                stack[top] = root.getLeft();
-                prefixStack[top] = "";
-                isLastStack[top] = true;
-                isLeftStack[top] = true;
-            }
-
-            if (root.hasRightChild()) {
-                top = top + 1;
-                stack[top] = root.getRight();
-                prefixStack[top] = "";
-                isLastStack[top] = !root.hasLeftChild();
-                isLeftStack[top] = false;
-            }
+            top = top + 1;
+            nodeStack[top] = root;
+            prefixStack[top] = "";
+            labelStack[top] = "";
+            lastStack[top] = true;
 
             while (top >= 0) {
-                Node node = stack[top];
+                Node current = nodeStack[top];
                 String prefix = prefixStack[top];
-                boolean isLast = isLastStack[top];
-                boolean isLeft = isLeftStack[top];
+                String label = labelStack[top];
+                boolean last = lastStack[top];
                 top = top - 1;
 
-                String connector = isLast ? "└─" : "├─";
-                String extension = isLast ? "  " : "│ ";
-                String side = isLeft ? "L: " : "R: ";
-
-                System.out.println(prefix + connector + side + node.getKey());
-
-                String newPrefix = prefix + extension;
-
-                if (node.hasLeftChild()) {
-                    top = top + 1;
-                    stack[top] = node.getLeft();
-                    prefixStack[top] = newPrefix;
-                    isLastStack[top] = true;
-                    isLeftStack[top] = true;
+                String childPrefix;
+                if (current == root) {
+                    System.out.println(current.getKey());
+                    childPrefix = "";
+                } else {
+                    String connector = last ? "`-- " : "+-- ";
+                    System.out.println(prefix + connector + label + current.getKey());
+                    childPrefix = prefix + (last ? "    " : "|   ");
                 }
 
-                if (node.hasRightChild()) {
+                if (current.hasRightChild()) {
                     top = top + 1;
-                    stack[top] = node.getRight();
-                    prefixStack[top] = newPrefix;
-                    isLastStack[top] = !node.hasLeftChild();
-                    isLeftStack[top] = false;
+                    nodeStack[top] = current.getRight();
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "D: ";
+                    lastStack[top] = true;
+                }
+
+                if (current.hasLeftChild()) {
+                    top = top + 1;
+                    nodeStack[top] = current.getLeft();
+                    prefixStack[top] = childPrefix;
+                    labelStack[top] = "I: ";
+                    lastStack[top] = !current.hasRightChild();
                 }
             }
-        } else {
-            System.out.println("Árbol vacío");
         }
-
     }
 
     public void rotateRight(int key) {
